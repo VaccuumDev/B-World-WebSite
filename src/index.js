@@ -177,22 +177,6 @@ function downloadTransition() {
   );
 }
 
-function listAnimation()
-{
-  animate(
-    '.version-container',
-    {
-      delay: stagger(100),
-      y: [-120, 0],
-      opacity: [0, 1],
-      ease: 'outBounce',
-      composition: 2
-    }
-  ) 
-  Resize();
-  
-  console.log("Succesfully (maybe) animated versions list");
-}
 function Resize()
 {
   camera.aspect = window.innerWidth / window.innerHeight;
@@ -219,4 +203,4 @@ root.render(
 reportWebVitals();
 
 
-export { downloadTransition, startAnimation, listAnimation };
+export { downloadTransition, startAnimation };

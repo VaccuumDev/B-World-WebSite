@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { createAnimatable } from 'animejs';
-import { downloadTransition, startAnimation, listAnimation } from './index';
+import { downloadTransition, startAnimation} from './index';
 
-const path = `${process.env.PUBLIC_URL}/JSON/versions.json`;
 const launcherPath = ""; // TODO: ССЫЛКУ НА ЛАУНЧЕР СЮДААА
 
 class MainPage extends React.Component {
@@ -24,10 +23,10 @@ class MainPage extends React.Component {
         return (
             <div id="main-page" className="container">
                 <div className="item panel">
-                    {"«Всякий человек меньше самого прекрасного своего создания» (c) П. Валери"}
+                    {"Neque porro quisquam est qui dolorem ipsum "}
                 </div>
                 <div className="item panel">
-                    {"«Едва ли есть высшее из наслаждений, как наслаждение творить» (c) Н. Гоголь"}
+                    {"Lorem ipsum dolor sit amet quia dolor sit amet, consectetur, adipisci"}
                 </div>
 
                 <div className="item card zero-start-scale">
@@ -45,74 +44,11 @@ class MainPage extends React.Component {
     }
 }
 
-class VersionsList extends React.Component {
-    state = {
-        versions: [],
-        error: null,
-    };
-
-    componentDidMount() {
-        fetch(path)
-            .then(response => response.json())
-            .then(data => {
-                //console.log(data);
-                this.setState({ versions: data.versions });
-            })
-            .catch(error => {
-                console.error('Не удалось загрузить версии:', error);
-                this.setState({ error: `Не удалось загрузить версии: ${error.message}` });
-            });
-    }
-    render() {
-        const { versions, error } = this.state;
-
-        if (error) {
-            return (
-                <div>
-                    <code>
-                        <ol>
-                            <li><p className='red'>{error};</p></li>
-                            <li></li>
-                            <li>Вероятно, ваш браузер не может получить доступ к файлу <a className="link" href={path}>versions.json</a>;</li>
-                        </ol>
-                    </code>
-                </div>);
-        }
-
-        if (versions.length === 0) {
-            return <div>Загрузка</div>;
-        }
-
-        return (
-            <div className='wrapper'>
-                <div className='scroll-section'>
-                    <ul>
-                        {
-                            versions.map(version => (
-                                <VersionElement
-                                    id={version.id}
-                                    displayName={version.displayName}
-                                    key={version.id}
-                                />
-                            ))
-                        }
-                    </ul>
-                </div>
-                <span className='handle'></span>
-            </div>
-        );
-    }
-}
 class DownloadPage extends React.Component {
     render() {
         return (
             <div id="download-page">
                 <h2 translate="no">Скачивание B-World</h2>
-                <p>Для скачивания нажмите на карточку с версией</p>
-
-                <VersionsList></VersionsList>
-
-                <h2 className="bigcooltext">ИЛИ</h2>
 
                 <div className="launcher-container">
                     <div className="card big-af">
@@ -127,28 +63,6 @@ class DownloadPage extends React.Component {
         );
     }
 }
-
-
-const VersionElement = ({ id, displayName }) => {
-    useEffect(() => {
-        listAnimation();
-    }, [])
-
-    return ( 
-        <li>
-            <div className='version-card'>
-                <a href={id}> 
-                    <div className='version-container'>
-                        <div className='effects'></div>
-                        <div className='version'>
-                            <h3>{displayName}</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </li>
-    );
-};
 
 const DownloadButton = ({ onPageChange }) => {
     useEffect(() => {
