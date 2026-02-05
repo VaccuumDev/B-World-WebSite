@@ -1,6 +1,12 @@
+<div align="center">
+
+![B-World_Website_logo](public/BW-WEBSITE.png)
+
 # B-World Website
 
 The official website for **B-World**, built with React!
+
+</div>
 
 ## About
 
